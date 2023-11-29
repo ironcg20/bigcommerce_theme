@@ -1,0 +1,27 @@
+---
+blog:
+    posts:
+        limit: {{theme_settings.blog_posts_per_page}}
+        pages: 3
+        summary: 200
+---
+{{#partial "page"}}
+
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <main class="page">
+        {{#unless theme_settings.hide_blog_page_heading }}
+            <h1 class="page-heading">{{ blog.name }}</h1>
+        {{/unless}}
+        <div class="blog-posts">
+            {{#each blog.posts}}
+                {{> components/blog/post post=this}}
+            {{/each}}
+        </div>
+    
+        {{> components/common/paginator pagination.blog}}
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}

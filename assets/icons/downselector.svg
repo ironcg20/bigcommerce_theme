@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="10px" viewBox="0 0 15 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.1 (72631) - https://sketchapp.com -->
+    <g id="Symbols" fill-rule="evenodd">
+        <g id="InterfaceIcons/DownSelectorArrow" fill-rule="nonzero">
+            <path d="M7.5,6.53038668 L13.2672065,0.319548901 C13.6430093,-0.0851617696 14.2757404,-0.108596257 14.6804511,0.267206508 C15.0851618,0.643009274 15.1085963,1.27574043 14.7327935,1.6804511 L7.5,9.46961332 L0.267206508,1.6804511 C-0.108596257,1.27574043 -0.0851617696,0.643009274 0.319548901,0.267206508 C0.724259571,-0.108596257 1.35699073,-0.0851617696 1.73279349,0.319548901 L7.5,6.53038668 Z" id="Downselector" transform="translate(7.500000, 4.734805) rotate(-360.000000) translate(-7.500000, -4.734805) "></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,47 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{#partial "hero"}}
+    {{#if carousel}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/if}}
+
+    {{#if banners.top}}
+    <div class="banners" data-banner-location="top">
+        {{#each (limit banners.top_metadata 1)}}
+        <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+            <div data-event-type="promotion-click">
+                {{{this.content}}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    {{{snippet 'home_content'}}}
+
+{{/partial}}
+
+{{#partial "page"}}
+    {{#each shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div class="main full grid-bg">
+        <div class="container">
+            {{>  components/common/shop }}            
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout/base}}

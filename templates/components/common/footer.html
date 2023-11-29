@@ -1,0 +1,159 @@
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+
+
+                    
+<div class="footer_main" style="margin-top: 80px;">
+    
+    <div class="footer_column" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: column; height: 100%; position: relative; bottom: 55px;">
+        <h2></h2>
+        <div class="logofooter">
+            <a href="{{urls.home}}" class="header-logo__link" data-header-logo-link>
+                {{#if settings.store_logo.image}}
+                    {{#if theme_settings.logo_size '===' 'original'}}
+                    <img class="header-logo-image-unknown-size"
+                        src="{{getImage settings.store_logo.image 'logo_size'}}"
+                        alt="{{settings.store_logo.title}}"
+                        title="{{settings.store_logo.title}}">
+                    {{else}}
+                    <img class="header-logo-image"
+                        style="max-height: 100% !important;"
+                        src="{{getImage settings.store_logo.image 'logo_size'}}"
+                        srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
+                        alt="{{settings.store_logo.title}}"
+                        title="{{settings.store_logo.title}}">
+                    {{/if}}
+                {{else}}
+                <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
+            </a>
+        </div>
+        <p>(631) 800-8468</p>
+    </div>
+    
+    <div class="footer_column">
+        <h2>Address</h2>
+        <p>
+            <p style="padding:0px; margin:0px; ">137 Florida Street</p>
+            <p style="padding:0px; margin:0px; ">Farmingdale, NY 11735</p>
+        </p>
+
+        <h2>Email</h2>
+        <p>
+            support@wellspa.shop
+        </p>
+    </div>
+     
+    <div class="footer_column">
+        <h2>Company</h2>
+        <ul>
+            <li>
+                <a href="/about-us/">About Us</a>
+            </li>
+            
+            <li>
+                <a href="/contact-us/">Contact Us</a>
+            </li>
+            
+            <li>
+                <a href="/affiliates/">Affiliates</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer_column">
+        <h2>Help</h2>
+        <ul>
+            <li>
+                <a href="/shipping-methods/">Shipping Methods</a>
+            </li>
+            
+            <li>
+                <a href="/shipping-returns/">Shipping & Returns</a>
+            </li>
+            
+            <li>
+                <a href="/faqs/">FAQs</a>
+            </li>
+            
+            <li>
+                <a href="/Warranty">Warranty</a>
+            </li>
+        </ul>
+    </div>
+      
+    <div class="footer_column">
+        <h2>Site</h2>
+        <ul>
+            <li>
+                <a href="/login">Sign in</a>
+            </li>
+            
+            <li>
+                <a href="/customer-photos/">Customer Photos</a>
+            </li>
+            
+            <li>
+                <a href="/experience-our-products/">Experience Our Products</a>
+            </li>
+            
+            <li>
+                <a href="/sitemap">Sitemap</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer_column">
+        <h2>Follow Us</h2>
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/wellspa.life" target="_blank"><i class="fa-brands fa-facebook-f"></i></a> 
+                <a href="https://www.instagram.com/wellspa.life" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCHgEo_mRHY_Vv8XSB8oe0vQ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </li>
+            <li style="display: flex; align-items: center; justify-content: flex-start;">
+                <div style="width: 45px; height: 29px; margin-right: 5px;"><img style="max-width: 100%; max-height: 100%;" src="https://cdn11.bigcommerce.com/s-hwtczp2nyx/stencil/0c7ecbf0-5977-013c-0ed1-660662f26bf4/e/686f6c80-f1ac-013b-9840-427feb019367/img/pay-1.svg" /></div>
+                <div style="width: 45px; height: 29px; margin-right: 5px;"><img style="max-width: 100%; max-height: 100%;" src="https://cdn11.bigcommerce.com/s-hwtczp2nyx/stencil/0c7ecbf0-5977-013c-0ed1-660662f26bf4/e/686f6c80-f1ac-013b-9840-427feb019367/img/pay-2.svg" /></div>
+                <div style="width: 45px; height: 29px; margin-right: 5px;"><img style="max-width: 100%; max-height: 100%;" src="https://cdn11.bigcommerce.com/s-hwtczp2nyx/stencil/0c7ecbf0-5977-013c-0ed1-660662f26bf4/e/686f6c80-f1ac-013b-9840-427feb019367/img/pay-3.svg" /></div>
+                <div style="width: 45px; height: 29px; margin-right: 5px;"><img style="max-width: 100%; max-height: 100%;" src="https://cdn11.bigcommerce.com/s-hwtczp2nyx/stencil/0c7ecbf0-5977-013c-0ed1-660662f26bf4/e/686f6c80-f1ac-013b-9840-427feb019367/img/pay-4.svg" /></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--footer bottom bar -->
+
+<div class="footer_bottom_bar">
+    <div>
+        <p>2023 WellSpa. All Rights Reserved.</p>
+    </div>
+    <div class="footer_bottom_right">
+        <ul>
+            <li>
+                <a href="/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li>|</li>
+              <li>
+                <a href="/terms-of-service/">Terms Of Services</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

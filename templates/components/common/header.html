@@ -1,0 +1,211 @@
+<!--top bar -->
+<div class="top-bar">
+    <span><strong>Customer rating of 5/5 on Google!</strong></span>
+</div>
+
+<!-- mobile sidebar menu div  -->
+<div class="mobile_sidebar_menu_div" id="mobile-sidebar-menu">
+    <div class="mobile-sidebar-menu-header">
+        <div class="crossdiv">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+      
+        <div class="right_div" style="display: flex; align-items: center; justify-content: flex-end;">
+            
+            <a style="margin-right: 15px;" href="/faqs/">
+            <div class="iconbox">
+                <img src="https://cdn11.bigcommerce.com/s-2eap4oekvs/images/stencil/original/image-manager/faq-icon.jpg?t=1698150286" width="30px" />
+                <span style="font-size: 15px">FAQ</span>
+            </div>
+            </a>
+            <a href="/cart.php">
+            <div class="iconbox">
+                <img src="https://cdn11.bigcommerce.com/s-2eap4oekvs/images/stencil/original/image-manager/cart-icon.jpg?t=1698150285" width="30px" />
+                <span style="font-size: 15px">Cart</span>
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="mobilemenusealldives" style="position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <div style="width: 100%;">
+        <div class="mobile-menu-item" onClick="navigateToOutdoorSubmenu()">
+            <h3 style="margin:0px;">Outdoor Saunas</h3>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div style="width: 100%;">
+        <div class="mobile-menu-item" onClick="navigateToIndoorSubmenu()">
+            <h3 style="margin:0px;">Indoor Saunas</h3>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div style="width: 100%;">
+        <div class="mobile-menu-item" onClick="navigateToColdSubmenu()">
+            <h3 style="margin:0px;">Cold Plunge</h3>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div style="width: 100%;">
+        <div class="mobile-menu-item" onClick="navigateToQuickSubmenu()" style="border-bottom: 1px solid rgba(100, 100, 100, .5)">
+            <h3 style="margin:0px;">Quick Links</h3>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div class="mobile-sub-menu" id="mobile-sub-menu-outdoor">
+        <div style="width: 100%; height: 62px; background-color: #231f20; display: flex; align-items: center; justify-content: center;">
+            <button onClick="redirectToParentMenuOutdoor()" style="padding: 40px; width: 100%; color: white; display: flex; align-items: center;">
+                <i style="margin-right: 15px;" class="fa-solid fa-chevron-left"></i>
+                <h3 style="margin:0px; color: white;">Outdoor Saunas</h3>
+            </button>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/compact-saunas/">Compact Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/classic-barrel-saunas/">Classic Barrel Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/porch-barrel-saunas/">Porch Barel Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/panorama-saunas/">Panorama Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); border-bottom: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/cube-saunas/">Cube Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/outdoor-sauna-accessories/">OutDoor Sauna Accessories</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); border-bottom: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/outdoor-saunas/sauna-heaters/">Sauna Heaters</a>
+        </div>
+      </div>
+
+      <div class="mobile-sub-menu" id="mobile-sub-menu-indoor">
+        <div style="width: 100%; height: 62px; background-color: #231f20; display: flex; align-items: center; justify-content: center;">
+            <button onClick="redirectToParentMenuIndoor()" style="padding: 40px; width: 100%; color: white; display: flex; align-items: center;">
+                <i style="margin-right: 15px;" class="fa-solid fa-chevron-left"></i>
+                <h3 style="margin:0px; color: white;">Indoor Saunas</h3>
+            </button>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/indoor-saunas/">Shop All Indoor Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/indoor-saunas/thermowood-indoor-saunas/">Thermowood Indoor Saunas</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); border-bottom: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/indoor-saunas/indoor-sauna-accessories/">Indoor Sauna Accessories</a>
+        </div>
+      </div>
+
+      <div class="mobile-sub-menu" id="mobile-sub-menu-cold">
+        <div style="width: 100%; height: 62px; background-color: #231f20; display: flex; align-items: center; justify-content: center;">
+            <button onClick="redirectToParentMenuCold()" style="padding: 40px; width: 100%; color: white; display: flex; align-items: center;">
+                <i style="margin-right: 15px;" class="fa-solid fa-chevron-left"></i>
+                <h3 style="margin:0px; color: white;">Cold Plunge</h3>
+            </button>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/">Shop All Cold Plunge</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/chillers/">Chillers</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/plunge-kits/">Plunge Kits</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/plunge-tubs/">Plunge Tubes</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/cold-plunge-accessories/">Cold Plunge Accessoreis</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); border-bottom: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/cold-plunge/hot-tub-accessories/">Hot Tub Accessories</a>
+        </div>
+      </div>
+
+      <div class="mobile-sub-menu" id="mobile-sub-menu-quick">
+        <div style="width: 100%; height: 62px; background-color: #231f20; display: flex; align-items: center; justify-content: center;">
+            <button onClick="redirectToParentMenuQuick()" style="padding: 40px; width: 100%; color: white; display: flex; align-items: center;">
+                <i style="margin-right: 15px;" class="fa-solid fa-chevron-left"></i>
+                <h3 style="margin:0px; color: white;">Quick Links</h3>
+            </button>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/shop-all/">Quick Links</a>
+        </div>
+        <div style="width: 100%; height: 59px; border-top: 1px solid rgb(100, 100, 100, .5); display: flex; align-items: center; justify-content: flex-start; padding-left: 40px; font-size: 17px;">
+            <a href="/sauna-plunge-kits/">Sauna & Plunge Kits</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<header id="header" class="header" role="banner">
+    <div class="header-logo--wrap">
+        <div class="header-logo{{#if theme_settings.logo_size '===' 'original'}} logo-full-size-desktop{{/if}}{{#if theme_settings.logo_size_mobile '===' 'original'}} logo-full-size-mobile{{/if}}">
+            
+            <div class="logo-and-toggle">                
+                {{#if page_type '===' 'default'}}
+                    <h1>{{> components/common/store-logo}}</h1>
+                {{else}}
+                    <h1>{{> components/common/store-logo}}</h1>
+                {{/if}}
+            </div>
+            
+            <div class="quickSearchWrap" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                {{> components/common/quick-search}}
+            </div>
+            <div class="navUser-wrap">
+                {{> components/common/navigation}}
+            </div>
+        </div>
+    </div>
+
+    <!-- mobile header  -->
+
+    <div class="mobileheadermain">
+        <div class="menuicondiv">
+            <i class="fa-solid fa-align-justify"></i>
+        </div>
+
+        <div class="mobilelogo">
+            <img src="https://cdn11.bigcommerce.com/s-ognwsiw9xa/images/stencil/200x100/vertical_final_1699584833__47827.original.png" />
+        </div>
+
+        <div class="mobilelogo-cart">
+            <a href="#"><img src="https://cdn11.bigcommerce.com/s-hwtczp2nyx/stencil/0c7ecbf0-5977-013c-0ed1-660662f26bf4/e/686f6c80-f1ac-013b-9840-427feb019367/img/navbar/cart-icon.svg" alt="cart"></a>
+        </div>
+    </div>
+
+    <div class="navPages-container navbars" id="menu" data-menu style="top: 0px !important;">
+        {{> components/common/navigation-menu}}
+    </div>
+</header>
+
+
+
+{{#unless page_type '===' 'default'}}
+
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+{{/unless}}
+
+

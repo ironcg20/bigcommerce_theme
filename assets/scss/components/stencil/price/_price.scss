@@ -1,0 +1,20 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+
+.price--rrp,
+.price--non-sale,
+.price--discounted {
+    text-decoration: line-through;
+}
+
+.price-section--minor {
+    color: color("greys", "light");
+}
+
+.price-section--withoutTax {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

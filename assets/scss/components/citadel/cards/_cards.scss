@@ -1,0 +1,386 @@
+// =============================================================================
+// CARDS (CSS)
+// =============================================================================
+//
+// 1. Allow users to click the anchor tag on the image in the figcaption empty
+//    space. This provides a much larger and simpler hit state for navigating
+//    to the product details page. (Does not work in IE10 or earlier).
+// 2. Using translate3d to counter a chrome specific bug: When using a masonry
+//    styled layout via CSS column-count etc, transforms applied to descendants
+//    are made invisible, except for 3d transforms...
+//
+// -----------------------------------------------------------------------------
+
+.card {
+    &:focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &.focus-within {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+}
+
+.card-figure__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column;
+}
+
+.card-figure {
+    margin-top: $card-figure-marginTop;
+    padding: 3px;
+    position: relative;
+
+    &:hover {
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+
+    &__link {
+        display: block;
+        position: relative;
+    }
+}
+
+.card-img-container {
+
+    @include lazy-loaded-padding("productgallery_size");
+    max-width: get-width(stencilString("productgallery_size"));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-figcaption {
+    display: none;
+    margin: $card-figcaption-margin;
+    pointer-events: none; // 1
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}
+
+.card:hover .card-figcaption{
+    max-height: 300px;
+    height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(192, 233, 146);
+}
+
+.card:hover .card-image {
+    width: 100%;
+    height: 100%;
+}
+
+.card-figcaption-body {
+    display: $card-figcaption-body-display;
+    pointer-events: all; // 1
+    transform: translate3d(0, -50%, 0); // 2
+}
+
+.card-image {
+    @include lazy-loaded-img;
+    border: 0;
+    /* Object-fit polyfill */
+    font-family: "object-fit: contain;";
+    max-height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.card-title {
+    font-size: $card-title-fontSize;
+    margin: $card-title-margin;
+
+    > a {
+        color: $card-title-color;
+        display: block;
+        text-decoration: $card-title-textDecoration;
+
+        &:hover {
+            color: $card-title-color-hover;
+        }
+    }
+}
+
+.card-text {
+    margin-bottom: $card-text-marginBottom;
+
+    abbr {
+        border: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+}
+
+.card-figcaption-button {
+    border: $card-figcaption-button-border;
+    display: $card-figcaption-button-display;
+
+    &:active {
+        background-color: $card-figcaption-button-backgroundHover;
+        border: $card-figcaption-button-border;
+    }
+    .card-figcaption-body & {
+        &:focus {
+            outline: revert;
+        }
+    }
+}
+
+.card-body {
+    text-align: center;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+}
+
+.card-title > a {
+    text-align: center !important;
+}
+
+.card .card-figure .card-figure__link .card-img-container {
+    width: 100%;
+    height: 100%;
+}
+
+.card .card-image {
+    width: 90%;
+    height: 90%;
+    transition: all 0.1s ease 0s;
+    -webkit-transition: all 0.1s ease 0s;
+    -moz-transition: all 0.1s ease 0s;
+    -ms-transition: all 0.1s ease 0s;
+    -o-transition: all 0.1s ease 0s;
+}
+
+
+
+//
+// Alternate card
+//
+// Purpose: Used to give the card alternative styling
+// -----------------------------------------------------------------------------
+
+.card--alternate {
+    border: 3px solid stencilColor("card--alternate-borderColor");
+    transition: all 0.15s ease;
+
+    .card-body {
+        background-color: stencilColor("card--alternate-backgroundColor");
+        padding: spacing("half");
+        transition: all 0.15s ease;
+
+        @include breakpoint("small") {
+            padding: spacing("single");
+        }
+    }
+
+    &:hover {
+        border-color: stencilColor("color-primary");
+
+        .card-body {
+            background-color: stencilColor("color-primary");
+
+            .card-text {
+                color: stencilColor("card--alternate-color--hover");
+            }
+        }
+
+        .card-title > a {
+            color: stencilColor("card--alternate-color--hover");
+        }
+    }
+}
+
+.singproductboximagediv {
+    width: 90px;
+    height: 80px;
+}
+.singproductboximagediv img {
+    width: 100%;
+    height: 100%;
+}
+.single_product_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 200px;
+    margin-right: 10px;
+}
+.single_product_box p {
+    margin-top: 0px;
+}
+.singleproductfourboxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.section_left_right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 15px;
+    margin-top: 100px;
+}
+.sectioncolumn {
+    margin-right: 50px;
+}
+.sectioncolumn h1 {
+    font-size: 60px;
+
+}
+.sectioncolumn p {
+    font-size: 20px;
+}
+.sectioncolumn h1, .sectioncolumn p {
+    text-align: right;
+}
+.sectioncolumn img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 870px) {
+    .section_left_right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .sectioncolumn {
+        width: 100%;
+        margin-right: 0px;
+    }
+    .sectioncolumn h1, .sectioncolumn p {
+        text-align: center;
+    }
+}
+.assembly_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.assembl_div_left {
+    margin-right: 50px;
+}
+.assembl_div_left iframe {
+    width: 100%;
+}
+.get_free_product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.get_free_product div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+}
+.get_free_product div h4 {
+    font-size: 25px;
+}
+.assembl_div_right p {
+    font-size: 20px;
+    text-align: center;
+}
+@media only screen and (max-width: 901px) {
+    .assembl_div_left {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 50px;
+    }
+}
+@media only screen and (min-width: 901px) {
+    .assembl_div_left {
+        width: 50%;
+    }
+    .assembl_div_right {
+        width: 35%;
+    }
+}
+.assembl_div_right .submit-form {
+    padding: 0px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.assembl_div_right .submit-form input {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(237, 235, 235);
+    border: 1px solid rgb(180, 187, 195);
+    padding: 5px 10px;
+}
+.assembl_div_right button {
+    background: rgb(48, 59, 67);
+    border-radius: 4px;
+    border-style: none;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+    color: rgb(255, 255, 255);
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    line-height: 1;
+    white-space: normal;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+    word-break: break-word;
+    align-self: flex-end;
+    cursor: pointer;
+    height: 50px;
+    width: 100%;
+}
+#accordionExample {
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 50px;
+}
+#accordionExample .accordion-header {
+    padding: 20px;
+    cursor: pointer;
+}
+#accordionExample .accordion-collapse {
+    padding: 20px;
+    transition: all 0.5s ease 0s;
+}
+#accordionExample #collapseOne, #accordionExample #collapseTwo, #accordionExample #collapseThree, #accordionExample #collapsefour, #accordionExample #collapsefive, #accordionExample #collapsesix, #accordionExample #collapseseven {
+    display: none;
+}
+.display-block {
+    display: block !important;
+}
+
+.brand-name {
+    margin-top: 15px;
+    color: rgb(34, 211, 15) !important;
+    font-weight: 600;
+}

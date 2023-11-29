@@ -1,0 +1,107 @@
+<div class="modal-body fastCart">
+    <div class="previewCart">
+        <section class="previewCartCheckout">
+            <div>
+                <a href="{{urls.cart}}" class="button">
+                    {{lang 'cart.added_to_cart.view_or_edit_cart'}}
+                </a>
+                <p data-cart-quantity="{{cart.quantity}}">
+                    {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}.
+                    {{lang 'cart.added_to_cart.order_subtotal'}}
+
+                    <strong>
+                        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                            {{cart.sub_total.formatted}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </strong>
+                </p>
+            </div>
+            {{#if cart.show_primary_checkout_button}}
+                <div>
+                    <a href="{{urls.checkout.single_address}}" class="button button--primary">
+                        {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+                    </a>
+                    {{#if cart.additional_checkout_buttons}}
+                        <div class="previewCartCheckout-additionalCheckoutButtons">
+                            {{#each cart.additional_checkout_buttons}}
+                                {{{this}}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    {{#if cart.show_multiple_address_shipping}}
+                        <p>
+                            <a href="{{urls.checkout.multiple_address}}">
+                                {{lang 'cart.preview.checkout_multiple'}}
+                            </a>
+                        </p>
+                    {{/if}}
+                </div>
+            {{/if}}
+        </section>
+        <section class="productView">
+            <div class="whatNext">
+                <h5>{{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}}</h5>
+            </div>
+
+            {{#with cart.added_item}}
+                <figure class="productView-image">
+                    <div class="productView-img-container">
+                        <img class="productView-image--cart lazyload"
+                            data-sizes="auto"
+                            src="{{cdn 'img/loading.svg'}}"
+                            data-src="{{getImage image (cdn ../theme_settings.default_image_product)}}"
+                            alt="{{image.alt}}"
+                            title="{{image.alt}}" />
+                    </div>
+                </figure>
+
+                <div class="productView-details">
+                    <h2 class="productView-title">
+                        {{name}}
+                    </h2>
+
+                    <div class="productView-brand">
+                        {{brand.name}}
+                    </div>
+
+                    <div class="productView-price">
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{quantity}} &times; {{price.formatted}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+
+                    {{#each options}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            <dd class="productView-info-value">
+                                {{> components/common/product-options}}
+                            </dd>
+                        </dl>
+                    {{/each}}
+                </div>
+            {{/with}}
+        </section>
+    </div>
+
+    {{#if cart.suggested_products}}
+        <section class="suggestiveCart">
+            <h2>
+                {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
+            </h2>
+
+            <ul class="productGrid">
+                {{#each cart.suggested_products}}
+                    <li class="product">
+                        {{> components/products/card settings=../settings hide_product_quick_view=true theme_settings=../theme_settings}}
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
+</div>

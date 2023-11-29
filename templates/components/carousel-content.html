@@ -1,0 +1,11 @@
+<div class="heroCarousel-content{{#and (if heading '==' false) (if text '==' false)}} heroCarousel-content--empty{{/and}}">
+    {{#if heading}}
+        <p class="heroCarousel-title">{{{heading}}}</p>
+    {{/if}}
+    {{#if text}}
+        <p class="heroCarousel-description">{{{text}}}</p>
+    {{/if}}
+    {{#if button_text}}
+        <span class="heroCarousel-action button button--primary button--large"><a href="outdoor-saunas/" style="color: white;">{{button_text}}</a></span>
+    {{/if}}
+</div>

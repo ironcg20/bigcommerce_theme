@@ -1,0 +1,281 @@
+{{#each product.reviews.messages}}
+    {{#if error}}
+        {{> components/common/alert/alert-error error}}
+    {{/if}}
+    {{#if success}}
+        {{> components/common/alert/alert-success success}}
+    {{/if}}
+{{/each}}
+
+<div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#or customer (unless theme_settings.restrict_to_login)}}{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}{{else}}{{lang 'common.login_for_pricing'}}{{/or}}" data-product-variant="single-product-option"{{/if}}>
+    <section class="productView-images" data-image-gallery>
+        {{!--
+            Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+            for variant/rule image replacement
+        --}}
+        {{#if product.images.length '>' 1 }}
+        {{> components/carousel-content-announcement}}
+        {{/if}}
+        <figure class="productView-image"
+                data-image-gallery-main
+                {{#if product.main_image}}
+                data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+                {{/if}}
+                >
+            <div class="productView-img-container">
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                        target="_blank">
+                {{/if}}
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    class="productView-image--default"
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                    otherAttributes="data-main-image"
+                }}
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    </a>
+                {{/if}}
+            </div>
+        </figure>
+        <ul class="productView-thumbnails"{{#gt product.images.length 7}} data-slick='{
+                "infinite": false,
+                "mobileFirst": true,
+                "dots": false,
+                "accessibility": false,
+                "slidesToShow": 7,
+                "slidesToScroll": 1
+            }'
+            data-arrow-label="{{lang 'carousel.arrowAriaLabel'}} {{product.images.length}}"
+            {{/gt}}>
+            {{#each product.images}}
+                <li class="productView-thumbnail">
+                    <a
+                        class="productView-thumbnail-link"
+                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                        data-image-gallery-item
+                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    >
+                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+    </section>
+    <section class="productView-details product-data">
+        <div class="productView-product">
+            {{#if page_type '===' 'product'}}
+                {{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
+                    <div class="sale-flag-side">
+                        <span class="sale-text">Sale</span>
+                    </div>
+                {{/or}}
+            {{/if}}
+
+            <h1 class="productView-title main-heading">{{product.title}}</h1>
+            {{#if product.brand}}
+                <span class="productView-brand">
+                    <a href="{{product.brand.url}}"><span><strong>{{product.brand.name}}</strong></span></a>
+                </span>
+            {{/if}}
+            <div class="productSKU">
+                <dt class="productView-info-name sku-label" {{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
+                <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+            </div>
+            {{#and product.sku product.upc}}<span style="position:relative; padding: 0 3px; top: -1px;">|</span>{{/and}}
+            {{#if product.upc}}
+                <div class="productUPC">
+                    <dt class="productView-info-name upc-label">{{lang 'products.upc'}}</dt>
+                    <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                </div>
+            {{/if}}
+            {{#if product.availability}}
+                <div>
+                    <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                    <dd class="productView-info-value">{{product.availability}}</dd>
+                </div>
+            {{/if}}
+            {{#if product.call_for_price}}
+                <p class="productView-price">
+                    <span>{{product.call_for_price}}</span>
+                </p>
+            {{/if}}
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price}}
+                {{else}}
+                    {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+
+            {{#and settings.bulk_discount_enabled product.bulk_discount_rates.length}}
+                <div class="productView-info-bulkPricing">
+                    {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                </div>
+            {{/and}}
+
+            {{{region name="product_below_price"}}}
+            <div class="productView-rating">
+                {{#if settings.show_product_rating}}
+                    {{> components/products/ratings rating=product.rating}}
+                    {{#if product.num_reviews '>' 0}}
+                        <a href="{{product.url}}{{#if is_ajax}}#product-reviews{{/if}}" id="productReview_link">
+                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                        </a>
+                    {{else}}
+                        <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+                    {{/if}}
+                {{/if}}
+                {{#if settings.show_product_reviews}}
+                    <button class="productView-reviewLink productView-reviewLink--new">
+                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                            {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                            role="button"
+                        >
+                           <i class="icon" aria-hidden="true" style="position: relative; top: -1px;">
+                                <svg><use xlink:href="#icon-plus" /></svg>
+                            </i>
+                           <strong style="text-decoration: underline;">{{lang 'products.reviews.new'}}</strong>
+                        </a>
+                    </button>
+                    {{> components/products/modals/writeReview}}
+                {{/if}}
+            </div>
+            <div class="productView-specs">
+            {{#all product.weight theme_settings.show_product_weight}}
+                <div class="productView-info">
+                    <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                    <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                </div>
+            {{/all}}
+            {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                <div>
+                    <dt class="productView-info-name">{{lang 'products.width'}}</dt>
+                    <dd class="productView-info-value" data-product-width>
+                        {{product.width}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                </div>
+                <div>
+                    <dt class="productView-info-name">{{lang 'products.height'}}</dt>
+                    <dd class="productView-info-value" data-product-height>
+                        {{product.height}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                </div>
+                <div>
+                    <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
+                    <dd class="productView-info-value" data-product-depth>
+                        {{product.depth}}
+                        {{#if settings.measurements.length '==' 'Centimeters'}}
+                        ({{lang 'products.measurement.metric'}})
+                        {{else}}
+                        ({{lang 'products.measurement.imperial'}})
+                        {{/if}}
+                    </dd>
+                </div>
+            {{/all}}
+            {{#if product.condition}}
+                <div>
+                    <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                    <dd class="productView-info-value">{{product.condition}}</dd>
+                </div>
+            {{/if}}
+            </div>
+            {{product.detail_messages}}
+        </div>
+        {{#and product.warranty theme_settings.show_short_desc}}
+            <div class="productView-warranty">
+                {{{product.warranty}}}
+            </div>
+        {{/and}}
+        <div class="productView-options">
+            <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                  data-cart-item-add>
+                <input type="hidden" name="action" value="add"/>
+                <input type="hidden" name="product_id" value="{{product.id}}"/>
+                
+                <div class="productView-options-wrap" data-product-option-change style="display:none;">
+                    {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                    {{#if product.options}}
+                        <div class="productView-options-inner">
+                            {{#each product.options}}
+                                {{{dynamicComponent 'components/products/options'}}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                </div>
+                
+                <div class="shipping-giftWrap-stock">
+                    {{#if product.shipping}}
+                        {{#unless product.shipping.calculated}}
+                            {{#if product.shipping.price.value '===' 0}}
+                                <div class="productView-shipping productView-shipping--free">
+                                    <dt class="productView-info-name hide-label">{{lang 'products.shipping'}}</dt>
+                                    <dd class="productView-info-value uppercase"><strong>{{lang 'products.shipping_free'}}</strong></dd>
+                                </div>
+                            {{else}}
+                                <div class="productView-shipping">
+                                    <dt class="productView-info-name">Fixed Shipping Cost: </dt>
+                                    <dd class="productView-info-value">{{product.shipping.price.formatted}}</dd>
+                                </div>
+                            {{/if}}
+                        {{/unless}}
+                    {{/if}}
+                    {{#if product.gift_wrapping_available}}
+                        <div class="productView-giftWrap">
+                            <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                        </div>
+                    {{/if}}
+                    <div class="form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                        <dt class="productView-info-name">{{lang 'products.current_stock'}}</dt>
+                        <dd class="productView-info-value"><span data-product-stock>{{product.stock_level}}</span></dd>
+                    </div>
+                </div>
+                
+                {{> components/products/add-to-cart}}
+
+                {{#if product.out_of_stock}}
+                    {{#if product.out_of_stock_message}}
+                        {{> components/common/alert/alert-error product.out_of_stock_message}}
+                    {{else}}
+                        {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                    {{/if}}
+                    <span class="button button--primary button--out-of-stock">Out of Stock</span>
+                {{/if}}
+            </form>
+
+            {{#if settings.show_wishlist}}
+                {{> components/common/wishlist-dropdown}}
+            {{/if}}
+            {{#if product.release_date }}
+                <p>{{product.release_date}}</p>
+            {{/if}}
+            
+            {{#unless is_ajax}}
+                {{> components/common/share url=product.url}}
+            {{/unless}}
+        </div>
+    </section>
+</div>
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>

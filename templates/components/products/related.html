@@ -1,0 +1,7 @@
+<ul class="productGrid productGrid--maxCol{{ columns }}"{{#if settings.data_tag_enabled}} data-list-name="Related Products" {{/if}}>
+    {{#each products}}
+    <li class="product">
+        {{>components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+    </li>
+    {{/each}}
+</ul>

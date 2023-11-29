@@ -1,0 +1,24 @@
+{{#partial "head"}}
+    {{{stylesheet 'assets/css/maintenance.css'}}}
+{{/partial}}
+
+{{#partial "page"}}
+    <div class="logo">
+        {{#if settings.store_logo.image}}
+            <div class="header-logo-image-container">
+                <img class="header-logo-image" src="{{getImage settings.store_logo.image}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+            </div>
+        {{else}}
+            <span class="header-logo-text">{{settings.store_logo.title}}</span>
+        {{/if}}
+    </div>
+    <main>
+        <header>
+            <h1>{{lang 'maintenance.down'}}</h1>
+        </header>
+        <section><p>{{{settings.maintenance.message}}}</p></section>
+        <section></section>
+        <footer><small></small></footer>
+    </main>
+{{/partial}}
+{{> layout/empty}}

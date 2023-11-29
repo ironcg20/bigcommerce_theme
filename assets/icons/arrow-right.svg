@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <g id="Symbols" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="InterfaceIcons/SubnavArrow" fill-rule="nonzero">
+            <path d="M3.5,5.08578644 L6.29289322,2.29289322 C6.68341751,1.90236893 7.31658249,1.90236893 7.70710678,2.29289322 C8.09763107,2.68341751 8.09763107,3.31658249 7.70710678,3.70710678 L3.5,7.91421356 L-0.707106781,3.70710678 C-1.09763107,3.31658249 -1.09763107,2.68341751 -0.707106781,2.29289322 C-0.316582489,1.90236893 0.316582489,1.90236893 0.707106781,2.29289322 L3.5,5.08578644 Z" id="Downselector-Copy-3" transform="translate(3.500000, 4.957107) rotate(-90.000000) translate(-3.500000, -4.957107) "></path>
+        </g>
+    </g>
+</svg>

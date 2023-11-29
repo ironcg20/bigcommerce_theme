@@ -1,0 +1,81 @@
+<div class="previewCart">
+    <div class="previewCartAction">
+        {{#if cart.show_primary_checkout_button}}
+            <div class="previewCartAction-checkout">
+                <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                    {{lang 'cart.preview.checkout_now'}}
+                </a>
+            </div>
+        {{/if}}
+        <div class="previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}">
+            <a href="{{urls.cart}}" class="button button--small button--action">
+                {{lang 'cart.preview.view_cart'}}
+            </a>
+        </div>
+        <div class="previewCartAction--close">
+            <button class="cart-preview-close button button--small button--action" data-cart-preview-toggle>
+                <i class="icon" aria-hidden="true">
+                        <svg><use xlink:href="#icon-close"></use></svg>
+                    </i>
+            </button>
+        </div>
+    </div>
+    {{#if cart.show_multiple_address_shipping}}
+        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+            {{lang 'cart.preview.checkout_multiple'}}
+        </a>
+    {{/if}}
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            {{#each (limit cart.items 4)}}
+                <li class="previewCartItem">
+                    <div class="previewCartItem-image">
+                        {{#if type '==' 'GiftCertificate'}}
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                        {{else}}
+                            {{> components/common/responsive-img
+                                image=image
+                                fallback_size=../theme_settings.productthumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                                default_image=../theme_settings.default_image_product
+                            }}
+                        {{/if}}
+                    </div>
+                    <div class="previewCartItem-content">
+                        <h6 class="previewCartItem-name">
+                            <a href="{{url}}" alt="{{name}}" title="{{name}}">{{quantity}}x {{name}}</a>
+                        </h6>
+
+                        <span class="previewCartItem-price">
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                <span{{#if price_discounted}} class="price--discounted"{{/if}}>{{price.formatted}}</span>
+                                {{#if price_discounted}}
+                                    {{price_discounted.formatted}}
+                                {{/if}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </span>
+                        <div class="cart-preview-list-item-remove">
+                            <a class="cart-preview-list-item-remove" data-product-id="{{id}}" href="{{remove_url}}" data-cart-remove>Remove</a>
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+    <div class="cart-preview-footer">
+        <div class="cart-preview-pricing">
+            <div class="cart-preview-total-price-label">Subtotal</div>
+            <div class="cart-preview-total-price">&nbsp; <strong>{{{cart.sub_total.formatted}}}</strong></div>
+        </div>
+    </div>
+    {{#if cart.additional_checkout_buttons}}
+        <div class="previewCart-additionalCheckoutButtons">
+            {{#each cart.additional_checkout_buttons}}
+                {{{this}}}
+            {{/each}}
+        </div>
+    {{/if}}
+</div>
+

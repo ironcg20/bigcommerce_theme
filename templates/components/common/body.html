@@ -1,0 +1,7 @@
+<div class="body {{#if template_file '===' 'pages/home'}}home{{/if}}" id='main-content' role='main' data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    {{#block "page"}} {{/block}}
+    {{#block "hero-bottom"}} {{/block}}
+    {{> components/common/modal/modal}}
+    {{> components/common/alert/alert-modal}}
+</div>

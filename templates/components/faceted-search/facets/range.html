@@ -1,0 +1,53 @@
+<div class="accordion-block">
+    {{> components/faceted-search/faceted-search-navigation}}
+
+    <div id="facetedSearch-content--{{hyphenate facet }}" class="accordion-content {{#unless start_collapsed }} is-open {{/unless}}">
+        <form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
+            <input type="hidden" name="search_query" value="{{search_query}}">
+            {{#if this.sort}}
+                <input type="hidden" name="sort" value="{{this.sort}}">
+            {{/if}}
+            <fieldset class="form-fieldset">
+                <div class="form-minMaxRow" style="display: flex;align-items: flex-start;justify-content: flex-start;flex-wrap: wrap;width: 100% !important;">
+                    <div class="form-field" style="position: relative;height: 45px;width: 100px;margin-bottom: 5px;">
+                        <i class="fa-solid fa-dollar-sign" style="position: absolute; top: 17px; left: 10px;"></i>
+                        <input
+                            style="padding-left:20px; border-radius: 10px; height: 45px; width: 100px; font-size: 20px;"
+                            name="min_price"
+                            placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{min_price}}"
+                        />
+                    </div>
+
+                    <div style="margin: 0px 10px; position: relative; top: 10px; left: 5px; font-size: 18px;"><span>to</span></div>
+
+                    <div class="form-field" style="position: relative;height: 45px;width: 100px;margin-bottom: 5px;">
+                        <i class="fa-solid fa-dollar-sign" style="position: absolute; top: 17px; left: 10px;"></i>
+                        <input
+                            style="padding-left:20px; border-radius: 10px; height: 45px; width: 100px; font-size: 20px;"
+                            name="max_price"
+                            placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{max_price}}"
+                        />
+                    </div>
+
+                    <div class="form-field" id="submit-btn-container">
+                        <button class="button button--small" type="submit" style="border-radius: 15px; margin: 0px 10px;">
+                            {{lang 'search.faceted.range.update'}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-inlineMessage"></div>
+            </fieldset>
+        </form>
+    </div>
+</div>

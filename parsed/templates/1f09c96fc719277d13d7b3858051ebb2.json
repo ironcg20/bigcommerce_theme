@@ -1,0 +1,1 @@
+{"components/search/content-count":"<span data-url=\"{{forms.search.content_url}}\" data-count=\"{{pagination.content_results.total}}\">\n    {{lang 'search.results.content_count' count=pagination.content_results.total}}\n</span>\n"}

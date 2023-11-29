@@ -1,0 +1,85 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+<div class="container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+</div>
+
+<div class="page">
+    <main class="page-content" id="product-listing-container">
+        <div class="container">
+            {{#if category.image}}
+                <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+            {{/if}}
+            {{#unless theme_settings.hide_category_page_heading }}
+                <h1 class="page-heading">{{category.name}}</h1>
+            {{/unless}}
+            {{{region name="category_below_header"}}}
+            {{{category.description}}}
+            {{{snippet 'categories'}}}
+            
+            {{#if theme_settings.show_subcategories}}
+                {{#if category.subcategories}}
+                    <div class="sidebarBlock page-content-subcategories">
+                        <h5 class="sidebarBlock-heading">Subcategories:</h5>
+                        <ul class="navList">
+                            {{#each category.subcategories}}
+                            <li class="navList-item">
+                                <a class="navList-action" href="{{url}}" alt="{{name}}" title="{{name}}">
+                                    <div class="image-wrap{{#unless image}} image-placeholder{{/unless}}">
+                                    {{#if image}}
+                                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image}}" alt="{{image.alt}}" title="{{image.alt}}">
+                                    {{else}}
+                                        <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'assets/img/BrandDefault.gif'}}" alt="{{image.alt}}" title="{{image.alt}}">
+                                    {{/if}}
+                                    </div>
+                                    <span>{{name}}</span>
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                {{/if}}
+            {{/if}}
+        </div>
+
+        
+        <div class="grid-bg">
+            <div class="container">
+                {{#or theme_settings.subcategories_left_column theme_settings.shop_by_price_visibility}}
+                    <aside class="page-sidebar" id="faceted-search-container">
+                        {{> components/category/sidebar}}
+                    </aside>
+                {{/or}}
+                <main class="page-content">
+                    {{#if category.products}}
+                        {{> components/category/product-listing}}
+                    {{else}}
+                        <div class="container">
+                            <p>{{lang 'categories.no_products'}}</p>
+                        </div>
+                    {{/if}}
+                    {{{region name="category_below_content"}}}
+                </main>
+            </div>
+        </div>
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}

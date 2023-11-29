@@ -1,0 +1,103 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+{{#partial "amp-style"}}
+    {{> components/amp/category/styles 
+        header-background=theme_settings.header-backgroundColor
+        body-bg=theme_settings.body-bg
+        footer-background=theme_settings.footer-backgroundColor
+        footer-heading=theme_settings.footer-heading-fontColor
+        footer-text=theme_settings.footer-textColor
+        footer-link=theme_settings.footer-linkColor
+        body-text=theme_settings.color-textBase
+        headings-color=theme_settings.color-textHeading
+        primary-link=theme_settings.color-textLink
+        nav-toggle-mobile=theme_settings.nav-toggle-mobile
+        nav-background=theme_settings.navPages-backgroundColor
+        nav-links-color=theme_settings.navPages-color
+        card-title-color=theme_settings.card-title-color
+        sale-badge-text=theme_settings.color_text_product_sale_badges
+        sale-badge-background=theme_settings.color_badge_product_sale_badges
+        primary-button-text=theme_settings.button--primary-color
+        primary-button-background=theme_settings.button--primary-backgroundColor
+        secondary-button-text=theme_settings.button--default-color
+        secondary-button-background=theme_settings.button--default-backgroundColor
+        disabled-button-text=theme_settings.button--disabled-color
+        disabled-button-background=theme_settings.button--disabled-backgroundColor
+        star-rating-empty=theme_settings.icon-ratingEmpty
+        star-rating-full=theme_settings.icon-ratingFull
+        storeName-color=theme_settings.storeName-color
+    }}
+{{/partial}}
+{{#partial "page"}}
+    {{> components/amp/common/header }}
+    {{#if category.image}}
+        <div class="categoryView-img">
+            <amp-img src="{{getImage category.image 'zoom_size'}}" width="300" height="150" layout="responsive" alt="{{category.name}}"></amp-img>
+        </div>
+    {{/if}}
+    <div class="container">
+        <h1 class="categoryView-title">
+            {{category.name}}
+        </h1>
+    </div>
+    <div class="page-content" id="product-listing-container">
+        {{#if category.products}}
+            {{> components/amp/category/product-listing}}
+        {{else}}
+            <p>{{lang 'categories.no_products'}}</p>
+        {{/if}}
+    </div>
+    {{> components/amp/category/subcategories}}
+    {{> components/amp/common/footer}}
+    {{#if settings.amp_analytics_id}}
+        <amp-analytics type="googleanalytics">
+            <script type="application/json">
+            {
+                "vars": {
+                    "account": "{{settings.amp_analytics_id}}"
+                },
+                "extraUrlParams": {
+                    "cd1": "{{page_type}}",
+                    "cd2": "{{category.id}}",
+                    "cd3": "{{category.url}}",
+                    "cd4": "{{category.name}}"
+                },
+                "triggers": {
+                    "trackPageview": {
+                        "on": "visible",
+                        "request": "pageview"
+                    },
+                    "trackClickOnProductCard" : {
+                        "on": "click",
+                        "selector": ".card-figure a, .card-title a",
+                        "request": "event",
+                        "vars": {
+                            "eventCategory": "Category",
+                            "eventAction": "Product Card"
+                        },
+                        "extraUrlParams": {
+                            "cd6": "${productLink}",
+                            "cd7": "${productId}",
+                            "cd8": "${productName}"
+                        }
+                    }
+                }
+            }
+            </script>
+        </amp-analytics>
+    {{/if}}
+{{/partial}}
+{{> layout/amp}}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ head.title }}</title>
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    {{#block "head"}}{{/block}}
+    
+    {{inject 'themeSettings' theme_settings}}
+</head>
+<body>
+    {{#block "page"}}{{/block}}
+
+    <script>
+        // Exported in app.js
+        window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+    </script>
+</body>
+</html>
